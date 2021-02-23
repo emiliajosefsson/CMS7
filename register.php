@@ -13,8 +13,8 @@
     <form class="login-form">
       <input type="text" placeholder="username"/>
       <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="register.php">Create an account</a></p>
+      <button>register</button>
+      <p class="message">Already registered? <a href="index.php">Sign in</a></p>
     </form>
   </div>
 </div>
