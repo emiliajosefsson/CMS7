@@ -1,4 +1,5 @@
 #Implementation
+#DB name = Millhouse
 
 #DROP SCHEMA IF EXISTS
 DROP TABLE IF EXISTS admins; 
