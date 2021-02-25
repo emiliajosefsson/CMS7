@@ -1,11 +1,15 @@
 #Implementation
 #DB name = Millhouse
 
+ 
+
 #DROP SCHEMA IF EXISTS
 DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Entries;
 DROP TABLE IF EXISTS Categories;
 DROP TABLE IF EXISTS Users;
+
+ 
 
 CREATE TABLE Users(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -21,12 +25,18 @@ VALUES
 ("Emilia", "Emilia", "Admin"),
 ("Tea", "Tea", "Admin");
 
+ 
+
 CREATE TABLE Categories(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 CategoryName VARCHAR(50)
 )
 
+ 
+
 ENGINE=InnoDB;
+
+ 
 
 CREATE TABLE Entries(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -40,6 +50,8 @@ CONSTRAINT FK_Users FOREIGN KEY(UsersId) REFERENCES Users(Id),
 CONSTRAINT FK_Category FOREIGN KEY(CategoryId) REFERENCES Categories(Id)
 )
 ENGINE=InnoDB;
+
+ 
 
 CREATE TABLE Comments(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
