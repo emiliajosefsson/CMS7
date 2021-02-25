@@ -100,3 +100,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+.error_form{
+  font-style: italic;
+}
+
+.success_form{
+  color: #43A047;
+}
