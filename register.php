@@ -52,11 +52,12 @@ if($stm->execute()) {
 
 <div class="login-page">
   <div class="form">
+  <h3>Create a new account</h3>
     <form class="login-form" action="register.php" method="POST">
       <input type="text" placeholder="* username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
+      <input type="password" placeholder="* password" name="password"/>
       <input id="button" type="submit" value="create account" name="create">
-      <p class="message">Already registered? <a href="index.php">Sign in</a></p>
+      <p class="message">Already registered? <a href="login.php">Sign in</a></p>
     </form>
     <?php
     if(!isset($_GET['signup'])) {
@@ -72,7 +73,8 @@ if($stm->execute()) {
         echo "<p class='error_form'> Användarnamnet används redan </p>";
         die();
       } elseif($signup == "success"){
-        echo "<p class='success_form'> Du har skapat ett konto</p>";
+        /*echo "<p class='success_form'> Du har skapat ett konto</p>";*/
+        header("location:login.php");
         die();
       } elseif($signup == "error"){
         echo "<p class='error_form'> Något gick fel</p>";
