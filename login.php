@@ -19,7 +19,7 @@
 
 <?php
 if(isset($_POST['login'])){
-include 'includes/database_connection.php';
+  include 'includes/database_connection.php';
 
 $salt = "haue7ahh%/he=(**påjhfi2";
 $username = $_POST['username'];
