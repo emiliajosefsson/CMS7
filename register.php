@@ -13,7 +13,7 @@
     <form class="login-form" action="" method="">
       <input type="text" placeholder="username"/>
       <input type="password" placeholder="password"/>
-      <input id="button" type="submit" value="login">
+      <input id="button" type="submit" value="register">
       <p class="message">Already registered? <a href="index.php">Sign in</a></p>
     </form>
   </div>
