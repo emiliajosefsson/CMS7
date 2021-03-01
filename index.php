@@ -36,7 +36,17 @@
       </li>
     </ul>
     <span class="navbar-text">
-        <a href="login.php">Sign Out</a>
+    
+<?php
+session_start();
+if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
+echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
+echo '<a href="logout.php">Sign Out</a>';
+} else {
+  header("location:login.php");
+}
+?>
+       <!-- <a href="logout.php">Sign Out</a>-->
     </span>
   </div>
 </nav>

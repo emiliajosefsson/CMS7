@@ -78,7 +78,6 @@ header("Location:index.php");
     die();
     }
   };
-  //cooome oooon
     ?>
   </div>
 </div>
