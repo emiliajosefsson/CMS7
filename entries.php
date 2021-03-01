@@ -38,11 +38,11 @@
     <span class="navbar-text">
     <?php
 session_start();
-if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
+if(isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['role'])) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
 echo '<a href="logout.php">Sign Out</a>';
 } else {
-  header("location:login.php");
+  header("location:index.php");
 }
 
 
