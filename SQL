@@ -25,9 +25,6 @@ CREATE TABLE Categories(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 CategoryName VARCHAR(50)
 )
-
- 
-
 ENGINE=InnoDB;
 
 INSERT INTO Categories(CategoryName)
@@ -36,7 +33,6 @@ VALUES
 ("Accessories"),
 ("Interior");
  
-
 CREATE TABLE Entries(
 Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 Title VARCHAR(30) NOT NULL,

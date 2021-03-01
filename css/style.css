@@ -26,6 +26,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
 /*.form button*/
 #button {
   font-family: "Roboto", sans-serif;
@@ -90,6 +91,7 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+
 body {
   background: #ADD8E6; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #ADD8E6, #68b2ca);
@@ -111,4 +113,63 @@ body {
 
 .company-name {
   font-weight: 500;
+}
+
+#select, #textarea {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.hero {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	/*background: #158ab1;*/
+    background: #ADD8E6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #ADD8E6, #68b2ca);
+    background: -moz-linear-gradient(right, #ADD8E6, #68b2ca);
+    background: -o-linear-gradient(right, #ADD8E6, #68b2ca);
+    background: linear-gradient(to left, #ADD8E6, #68b2ca);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
+    
+}
+  .h1hero{
+		font-size: 6em;
+		margin: 0 90px;
+		text-align: center;
+}
+
+.section {
+	max-width: 900px;
+	margin: 60px auto;
+	padding: 90px 30px;
+	background-color: #68b2ca;
+	text-align: center;
+}
+	.h2section {
+		font-size: 3em;
+		margin-bottom: 15px;
+	}
+	.psection {
+		line-height: 1.625em;
+		margin: 0 auto;
+		max-width: 480px;
+	}
+
+.company-name {
+    font-weight: 500;
+}
+  
+footer {
+	text-align: center;
 }
