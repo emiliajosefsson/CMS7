@@ -19,7 +19,7 @@
 
 <?php
 if(isset($_POST['login'])){
-  include 'includes/database_connection.php';
+include 'includes/database_connection.php';
 
 $salt = "haue7ahh%/he=(**påjhfi2";
 $username = $_POST['username'];
@@ -32,7 +32,7 @@ if(empty($username) || empty($userPassword) ) {
 
 else {
 $userPassword = md5($userPassword.$salt);
-$stm = $pdo->prepare("SELECT COUNT(id), username, password FROM users WHERE username=:username_IN AND password=:password_IN");
+$stm = $pdo->prepare("SELECT COUNT(Id), Username, Password FROM Users WHERE Username=:username_IN AND Password=:password_IN");
 
 $stm->bindParam(":username_IN", $username);
 $stm->bindParam(":password_IN", $userPassword); 
@@ -78,6 +78,7 @@ header("Location:index.php");
     die();
     }
   };
+  //cooome oooon
     ?>
   </div>
 </div>
