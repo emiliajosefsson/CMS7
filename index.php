@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Startsida</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -17,7 +17,7 @@ session_start();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand company-name" href="#">Millhouse</a>
+  <a class="navbar-brand company-name" href="index.php">Millhouse</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,19 +48,18 @@ session_start();
 <?php
 if(isset($_SESSION['username']) && isset($_SESSION['password']) ) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
-echo '<a href="logout.php">Sign Out</a>';
+echo '<a href="logout.php">Logga ut</a>';
 } else {
   header("location:login.php");
 }
 ?>
-       <!-- <a href="logout.php">Sign Out</a>-->
     </span>
   </div>
 </nav>
 
 <div class="site">
 	<div class="hero">
-		<h1 class="h1hero">Millhouse's Blog</h1>
+		<h1 class="h1hero">Millhouses Blogg</h1>
 	</div>
 
 	<section class="section">

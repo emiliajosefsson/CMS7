@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entries</title>
+    <title>Skapa inlägg</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -24,23 +24,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="entries.php">? <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Kategorier
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Kläder</a>
-          <a class="dropdown-item" href="#">Accesoarer</a>
-          <a class="dropdown-item" href="#">Inredning</a>
-        </div>
-      </li>
+      
     </ul>
     <span class="navbar-text">
     <?php
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['role'])) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
-echo '<a href="logout.php">Sign Out</a>';
+echo '<a href="logout.php">Logga ut</a>';
 } else {
   header("location:index.php");
 }
@@ -52,18 +43,19 @@ echo '<a href="logout.php">Sign Out</a>';
 </nav>
 <div class="login-page">
   <div class="form">
-  <h3>Skapa inlägg</h3>
+  <h3>Skapa ditt inlägg</h3>
     <form class="login-form" action="" method="POST">
-      <input type="text" placeholder="title" name="title"/>
+      <input type="text" placeholder="titel" name="title"/>
       <input type="date" name="date"/>
       <select name="categories" id="select">
+      <option value="">Kategorier:</option>
       <option value="Clothes">Kläder</option>
       <option value="Accessories">Accesoarer</option>
       <option value="Interior">Inredning</option>
       </select>
       <input type="file" name="" id="">
       <textarea name="" id="textarea" cols="30" rows="10" placeholder="skriv ditt inlägg här..."></textarea>
-      <input id="button" type="submit" value="Skapa inlägg" name="create-entry">
+      <input id="button" type="submit" value="Publicera" name="create-entry">
     </form>
     </div>
     </div>

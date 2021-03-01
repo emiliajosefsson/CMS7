@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Logga in</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,9 +14,9 @@
 <body>
 <!--Ska millhouse vara klickbart? -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand company-name" href="#">Millhouse</a>
+  <a class="navbar-brand company-name" href="login.php">Millhouse</a>
 </nav>
-
+<div class="hero">
 <?php
 if(isset($_POST['login'])){
 include 'includes/database_connection.php';
@@ -38,16 +38,11 @@ $stm->bindParam(":username_IN", $username);
 $stm->bindParam(":password_IN", $userPassword); 
 $stm->execute(); 
 
-
-/*möjligen att vi ska lägga till här i if statement role för att skapa olika sessions beroende på admin eller 
-user??*/
 $return = $stm->fetch();
-
 
   if($return['Role'] == "Admin"){
     $role = $return['Role'];
    }
-
 
 if($return[0]>0) {
 session_start();  
@@ -66,12 +61,12 @@ header("Location:index.php");
 
 <div class="login-page">
   <div class="form">
-  <h3>Sign in to your account</h3>
+  <h3>Logga in på ditt konto</h3>
     <form class="login-form" action="login.php" method="POST">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
-      <input id="button" type="submit" value="login" name="login">
-      <p class="message">Not registered? <a href="register.php">Create an account</a></p>
+      <input type="text" placeholder="användarnamn" name="username"/>
+      <input type="password" placeholder="lösenord" name="password"/>
+      <input id="button" type="submit" value="logga in" name="login">
+      <p class="message">Har du inget konto? <a href="register.php">Skapa ett konto här</a></p>
     </form>
     <?php
     if(!isset($_GET['login'])) {
@@ -90,6 +85,7 @@ header("Location:index.php");
   };
     ?>
   </div>
+</div>
 </div>
 </body>
 </html>

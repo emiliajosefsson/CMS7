@@ -92,17 +92,6 @@
   color: #EF3B3A;
 }
 
-body {
-  background: #ADD8E6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #ADD8E6, #68b2ca);
-  background: -moz-linear-gradient(right, #ADD8E6, #68b2ca);
-  background: -o-linear-gradient(right, #ADD8E6, #68b2ca);
-  background: linear-gradient(to left, #ADD8E6, #68b2ca);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
-
 .error_form{
   font-style: italic;
 }
@@ -168,6 +157,14 @@ body {
 
 .company-name {
     font-weight: 500;
+}
+
+select option:first-child {
+  display:none;
+}
+
+a {
+  text-decoration: none;
 }
   
 footer {
