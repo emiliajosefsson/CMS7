@@ -46,34 +46,44 @@ echo '<a href="logout.php">Sign Out</a>';
 }
 
 
-if(isset($_POST['create_entry'])){
-  
   include 'includes/database_connection.php';
 
-
-  $title = $_POST['title'];
-  $date = $_POST['date'];
-  $categories = $_POST['categories'];
-  $entry_text = $_POST['entry_text'];
-  $userId = $_SESSION['Id'];
-
-  if(empty($title) || empty($date) || empty($categories) || empty($entry_text)) {
-    header("Location: entries.php?entries=empty");
-    die();
+  $stm = $pdo->prepare("SELECT Title, Entry, EntryDate, CategoryId FROM Entries WHERE Id=:id_IN");
+  $stm->bindParam(":id_IN", $_GET['id']);
+  $sucess = $stm->execute();
+  if(!$sucess){
+      header("location: modify.php?modify=error");
   }
 
-  $sql = "INSERT INTO Entries (Title, Entry, EntryDate, CategoryId, UsersId) VALUES(:title_IN, :entry_IN, :entryDate_IN, :categoryId_IN, :usersId_IN)";
-  $stm = $pdo->prepare($sql);
-  $stm->bindParam(':title_IN', $title);
-  $stm->bindParam(':entry_IN', $entry_text);
-  $stm->bindParam(':entryDate_IN', $date);
-  $stm->bindParam(':categoryId_IN', $categories);
-  $stm->bindParam(':usersId_IN', $userId);
+$entryData = $stm->fetch();
 
-  if($stm->execute()) {
-    header("Location: entries.php?entries=success");
+
+if(isset($_POST['change_entry'])){
+
+    $title_change = $_POST['title'];
+    $categories_change = $_POST['categories'];
+    $entry_text_change = $_POST['entry_text'];
+  
+
+
+if(empty($title_change) || empty($entry_text_change)) {
+        header("Location: modify.php?modify=empty");
+        die();
+    }
+
+    
+        
+        $sql = "UPDATE Entries SET Entry = :entry_IN, Title = :title_IN, CategoryId = :categoryId_IN WHERE Entries.Id = :id_IN";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":entry_IN", $entry_text_change);
+        $stmt->bindParam(":title_IN", $title_change);
+        $stmt->bindParam(":categoryId_IN", $categories_change);
+        $stmt->bindParam(":id_IN", $_POST['id']);
+
+  if($stmt->execute()) {
+    header("Location: modify.php?modify=success");
   } else {
-    header("Location: entries.php?entries=error");
+    header("Location: modify.php?modify=error");
   }
   
 }
@@ -84,35 +94,35 @@ if(isset($_POST['create_entry'])){
 </nav>
 <div class="login-page">
   <div class="form">
-  <h3>Skapa inlägg</h3>
+  <h3>Ändra inlägg</h3>
     <form class="login-form" action="" method="POST">
-      <input type="text" placeholder="title" name="title"/>
-      <input type="date" name="date"/>
+    <input type="hidden" name="id" value="<?=$_GET['id']?>">
+      <input type="text" name="title" value=<?=$entryData['Title']?>>
       <select name="categories" id="select">
       <option value="1">Kläder</option>
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
       </select>
       <input type="file" name="" id="">
-      <textarea name="entry_text" id="textarea" cols="30" rows="10" placeholder="skriv ditt inlägg här..."></textarea>
-      <input id="button" type="submit" value="Skapa inlägg" name="create_entry">
+      <textarea name="entry_text" id="textarea" cols="30" rows="10"><?=$entryData['Entry']?></textarea>
+      <input id="button" type="submit" value="Ändra inlägg" name="change_entry">
     </form>
     <?php 
-if(!isset($_GET['entries'])) {
+if(!isset($_GET['modify'])) {
   die();
 }
 else {
-  $entries = $_GET['entries'];
+  $modify = $_GET['modify'];
 
-  if($entries == "empty"){
+  if($modify == "empty"){
     echo "<p class='error_form'> Vänligen fyll i alla rutor </p>";
     die();
   }
-    elseif($entries == "success"){
+    elseif($modify == "success"){
     /*echo "<p class='success_form'> Du har skapat ett konto</p>";*/
     header("location:index.php");
     die();
-  } elseif($entries == "error"){
+  } elseif($modify == "error"){
     echo "<p class='error_form'> Något gick fel</p>";
     die();
   }
@@ -125,3 +135,26 @@ else {
     </div>
     </body>
 </html>
+
+
+
+
+
+<!-- 
+    if(isset($_GET['action'])) {​​
+        $action = $_GET['action'];
+        }​​
+    //run this if statement if action variable is set and action variable is update
+    if(isset($action) && $action == "update") {​​
+    $sql = "UPDATE entries SET message = :message_IN WHERE entries.Id = :id_IN";
+    $stm = $pdo->prepare($sql);
+    $stm->bindParam(":message_IN", $_POST['message']);
+    $stm->bindParam(":id_IN", $_POST['id']);
+    
+    if($stm->execute()) {​​
+        header("location:guestbook.php");
+    }​​ else {​​
+        echo "Something went wrong";
+        die();
+    }​​
+}​​; -->
