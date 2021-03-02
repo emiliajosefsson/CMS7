@@ -37,7 +37,7 @@ session_start();
           Kategorier
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="clothes.php">Kläder</a>
+        <a class="dropdown-item" href="clothes.php">Kläder</a>
           <a class="dropdown-item" href="accessories.php">Accesoarer</a>
           <a class="dropdown-item" href="interior.php">Inredning</a>
         </div>
@@ -59,13 +59,13 @@ echo '<a href="logout.php">Sign Out</a>';
 </nav>        
 <div class="site">
 	<div class="hero">
-		<h1 class="h1hero">Millhouse's Blog</h1>
+		<h1 class="h1hero">Millhouse's Blog - Kläder</h1>
 	</div>
   <?php
 include 'includes/database_connection.php';
 
 
-$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries ORDER BY EntryDate DESC");
+$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId FROM Entries ORDER BY EntryDate DESC");
     /* while($row = $stm->fetch()){​​​​​
     echo $row['Title'] . " " . $row['Entry'] . " " . $row['EntryDate'] . " " $row['CategoryId'] "<br />";
     /* "<a href='entries.php?id=".$row['Id']."'>DELETE</a>" . " " . 
@@ -73,20 +73,15 @@ $stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries 
     }​​​​​ */
 
 while($row = $stm->fetch()):
+    if($row['CategoryId'] == 1){
     ?>
   <section class="section">
 		<h2><?=$row['Title']?></h2>
     <p> <?=$row['EntryDate']?></p>
     <p> <?=$row['CategoryId']?></p>
 		<p> <?=$row['Entry']?></p>
-<?php
-if(isset($_SESSION['role'])){
-   echo "<a href='delete.php?id=".$row['Id']."'>Ta bort</a>";
-   echo "<a href='modify.php?id=".$row['Id']."'>Ändra</a>";
-}
-?>
 	</section>
-  <?php  endwhile;
+  <?php } endwhile;
 
         ?>
 	<footer>

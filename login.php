@@ -32,7 +32,7 @@ if(empty($username) || empty($userPassword) ) {
 
 else {
 $userPassword = md5($userPassword.$salt);
-$stm = $pdo->prepare("SELECT COUNT(Id), Username, Password, Role FROM Users WHERE Username=:username_IN AND Password=:password_IN");
+$stm = $pdo->prepare("SELECT COUNT(Id), Username, Password, Role, Id FROM Users WHERE Username=:username_IN AND Password=:password_IN");
 
 $stm->bindParam(":username_IN", $username);
 $stm->bindParam(":password_IN", $userPassword); 
@@ -43,17 +43,18 @@ $stm->execute();
 user??*/
 $return = $stm->fetch();
 
-
   if($return['Role'] == "Admin"){
     $role = $return['Role'];
    }
 
+  $id = $return['Id'];
 
 if($return[0]>0) {
 session_start();  
 $_SESSION['username'] = $username;
 $_SESSION['password'] = $userPassword; 
 $_SESSION['role'] = $role;
+$_SESSION['Id'] = $id;
 
 header("Location:index.php");
 } else {
