@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Registrera</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,9 +14,9 @@
 <body>
 <!--Ska millhouse vara klickbart? -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand company-name" href="#">Millhouse</a>
+  <a class="navbar-brand company-name" href="login.php">Millhouse</a>
 </nav>
-
+<div class="hero">
 <?php
 
 
@@ -61,12 +61,12 @@ if($stm->execute()) {
 
 <div class="login-page">
   <div class="form">
-  <h3>Create a new account</h3>
+  <h3>Skapa ett nytt konto</h3>
     <form class="login-form" action="register.php" method="POST">
-      <input type="text" placeholder="* username" name="username"/>
-      <input type="password" placeholder="* password" name="password"/>
-      <input id="button" type="submit" value="create account" name="create">
-      <p class="message">Already registered? <a href="login.php">Sign in</a></p>
+      <input type="text" placeholder="* användarnamn" name="username"/>
+      <input type="password" placeholder="* lösenord" name="password"/>
+      <input id="button" type="submit" value="skapa konto" name="create">
+      <p class="message">Har du redan ett konto? <a href="login.php">Logga in här</a></p>
     </form>
     <?php
     if(!isset($_GET['signup'])) {
@@ -82,7 +82,6 @@ if($stm->execute()) {
         echo "<p class='error_form'> Användarnamnet används redan </p>";
         die();
       } elseif($signup == "success"){
-        /*echo "<p class='success_form'> Du har skapat ett konto</p>";*/
         header("location:login.php");
         die();
       } elseif($signup == "error"){
@@ -95,5 +94,6 @@ if($stm->execute()) {
     ?>
   </div>
 </div>
+  </div>
 </body>
 </html>
