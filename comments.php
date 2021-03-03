@@ -73,14 +73,8 @@ if(isset($_SESSION['role'])){
 ?>
 	</section>
 
-    <section class="section">
-            <h3>Kommentarer</h3>
-            <p>Username</p>
-            <p>Date</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, totam.</p></br>
-</section>
 
-    <div class="hero">
+  <div class="hero">
 <div class="login-page">
   <div class="form">
   <h3>Skriv din kommentar</h3>
@@ -89,27 +83,48 @@ if(isset($_SESSION['role'])){
       <textarea name="comment_text" id="textarea" cols="30" rows="10" placeholder="skriv din kommentar här..."></textarea>
       <input id="button" type="submit" value="Skicka kommentar" name="create_comment">
     </form>
-  <?php  endwhile;
-
-        ?>
-        <?php
+    <?php
     if(!isset($_GET['comment'])) {
-      die();
+     
       }
       else {
       $comment = $_GET['comment'];
   
       if($comment == "empty"){
       echo "<p class='error_form'> Vänligen fyll i alla rutor </p>";
-      die();
+      
       } elseif($comment == "error"){
         echo "<p class='error_form'> Något gick fel</p>";
-        die();
+       
       }
     }
     ?>
     </div>
     </div>
 </div>
+
+  <?php  endwhile;
+
+?>
+<section class="section">
+            <h3>Kommentarer</h3>
+<?php 
+
+$stmt = $pdo->query("SELECT Comment, Username, CommentDate 
+FROM Comments 
+JOIN Users ON Comments.UsersId = Users.Id WHERE EntriesId = $entryId ORDER BY CommentDate DESC");
+while($row = $stmt->fetch()):
+?>
+    
+            <p><?=$row['Username']?></p>
+            <p><?=$row['CommentDate']?></p>
+            <p><?=$row['Comment']?></p></br>
+
+<?php  endwhile;
+
+?>
+  </section>
+       
+    
     </body>
 </html>

@@ -140,21 +140,3 @@ else {
 
 
 
-<!-- 
-    if(isset($_GET['action'])) {​​
-        $action = $_GET['action'];
-        }​​
-    //run this if statement if action variable is set and action variable is update
-    if(isset($action) && $action == "update") {​​
-    $sql = "UPDATE entries SET message = :message_IN WHERE entries.Id = :id_IN";
-    $stm = $pdo->prepare($sql);
-    $stm->bindParam(":message_IN", $_POST['message']);
-    $stm->bindParam(":id_IN", $_POST['id']);
-    
-    if($stm->execute()) {​​
-        header("location:guestbook.php");
-    }​​ else {​​
-        echo "Something went wrong";
-        die();
-    }​​
-}​​; -->
