@@ -82,6 +82,7 @@ if(isset($_POST['create_entry'])){
     </span>
   </div>
 </nav>
+<div class="hero">
 <div class="login-page">
   <div class="form">
   <h3>Skapa inlägg</h3>
@@ -123,5 +124,6 @@ else {
 
     </div>
     </div>
+</div>
     </body>
 </html>

@@ -64,15 +64,15 @@ header("Location:index.php");
 }
 };
 ?>
-
+<div class="hero">
 <div class="login-page">
   <div class="form">
-  <h3>Sign in to your account</h3>
+  <h3>Logga in på ditt konto</h3>
     <form class="login-form" action="login.php" method="POST">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
-      <input id="button" type="submit" value="login" name="login">
-      <p class="message">Not registered? <a href="register.php">Create an account</a></p>
+      <input type="text" placeholder="användarnamn" name="username"/>
+      <input type="password" placeholder="lösenord" name="password"/>
+      <input id="button" type="submit" value="logga in" name="login">
+      <p class="message">Har du inget konto? <a href="register.php">Skapa ett konto här</a></p>
     </form>
     <?php
     if(!isset($_GET['login'])) {
@@ -91,6 +91,7 @@ header("Location:index.php");
   };
     ?>
   </div>
+</div>
 </div>
 </body>
 </html>
