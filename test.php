@@ -51,7 +51,10 @@ echo '<a href="logout.php">Sign Out</a>';
 <?php
 include 'includes/database_connection.php';
 $entryId = $_GET['id'];
-$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries WHERE Entries.Id = $entryId");
+$stm = $pdo->query("SELECT Comment, Username, CommentDate, Title, Entry, EntryDate, CategoryId, Entries.Id 
+FROM Comments 
+JOIN Users ON Comments.UsersId = Users.Id 
+JOIN Entries ON Comments.EntriesId = Entries.Id WHERE Entries.Id = $entryId AND EntriesId = $entryId;");
     /* while($row = $stm->fetch()){​​​​​
     echo $row['Title'] . " " . $row['Entry'] . " " . $row['EntryDate'] . " " $row['CategoryId'] "<br />";
     /* "<a href='entries.php?id=".$row['Id']."'>DELETE</a>" . " " . 
@@ -73,8 +76,14 @@ if(isset($_SESSION['role'])){
 ?>
 	</section>
 
+    <section class="section">
+            <h3>Kommentarer</h3>
+            <p><?=$row['Username']?></p>
+            <p><?=$row['CommentDate']?></p>
+            <p><?=$row['Entry']?></p></br>
+</section>
 
-  <div class="hero">
+    <div class="hero">
 <div class="login-page">
   <div class="form">
   <h3>Skriv din kommentar</h3>
@@ -83,48 +92,28 @@ if(isset($_SESSION['role'])){
       <textarea name="comment_text" id="textarea" cols="30" rows="10" placeholder="skriv din kommentar här..."></textarea>
       <input id="button" type="submit" value="Skicka kommentar" name="create_comment">
     </form>
-    <?php
+  <?php  endwhile;
+
+        ?>
+        <?php
     if(!isset($_GET['comment'])) {
-     
+      die();
       }
       else {
       $comment = $_GET['comment'];
   
       if($comment == "empty"){
       echo "<p class='error_form'> Vänligen fyll i alla rutor </p>";
-      
+      die();
       } elseif($comment == "error"){
         echo "<p class='error_form'> Något gick fel</p>";
-       
+        die();
       }
     }
     ?>
     </div>
     </div>
 </div>
-
-  <?php  endwhile;
-
-?>
-<section class="section">
-            <h3>Kommentarer</h3>
-<?php 
-
-$stmt = $pdo->query("SELECT Comment, Username, CommentDate 
-FROM Comments 
-JOIN Users ON Comments.UsersId = Users.Id WHERE EntriesId = $entryId ORDER BY CommentDate DESC");
-while($row = $stmt->fetch()):
-?>
-    
-            <p><?=$row['Username']?></p>
-            <p><?=$row['CommentDate']?></p>
-            <p><?=$row['Comment']?></p></br>
-
-<?php  endwhile;
-
-?>
-  </section>
-       
-    
     </body>
 </html>
+
