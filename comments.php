@@ -69,6 +69,7 @@ while($row = $stm->fetch()):
 if(isset($_SESSION['role'])){
    echo "<a href='delete.php?id=".$row['Id']."'>Ta bort</a></br>";
    echo "<a href='modify.php?id=".$row['Id']."'>Ändra</a>";
+
 }
 ?>
 	</section>
@@ -110,16 +111,20 @@ if(isset($_SESSION['role'])){
             <h3>Kommentarer</h3>
 <?php 
 
-$stmt = $pdo->query("SELECT Comment, Username, CommentDate 
+$stmt = $pdo->query("SELECT Comment, Username, CommentDate, Comments.Id 
 FROM Comments 
 JOIN Users ON Comments.UsersId = Users.Id WHERE EntriesId = $entryId ORDER BY CommentDate DESC");
 while($row = $stmt->fetch()):
 ?>
     
-            <p><?=$row['Username']?></p>
+            <p><b><?=$row['Username']?></b></p>
             <p><?=$row['CommentDate']?></p>
-            <p><?=$row['Comment']?></p></br>
-
+            <p><?=$row['Comment']?></p>
+  
+  <?php if(isset($_SESSION['role'])){
+   echo "<a href='deleteComments.php?commentid=".$row['Id']."&&id=$entryId'>Ta bort</a></br>";
+  };
+?>
 <?php  endwhile;
 
 ?>
