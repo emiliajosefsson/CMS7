@@ -50,25 +50,59 @@ if(isset($_POST['create_entry'])){
   
   include 'includes/database_connection.php';
 
-
+  //$image = $_FILES['image'];
   $title = $_POST['title'];
   $date = $_POST['date'];
   $categories = $_POST['categories'];
   $entry_text = $_POST['entry_text'];
   $userId = $_SESSION['Id'];
 
-  if(empty($title) || empty($date) || empty($categories) || empty($entry_text)) {
+  if(empty($title) || empty($date) || empty($categories) || empty($entry_text)){
     header("Location: entries.php?entries=empty");
     die();
   }
 
-  $sql = "INSERT INTO Entries (Title, Entry, EntryDate, CategoryId, UsersId) VALUES(:title_IN, :entry_IN, :entryDate_IN, :categoryId_IN, :usersId_IN)";
+$upload_folder = "images/"; 
+$image_file = $upload_folder . basename($_FILES['image']['name']);
+$file_type = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
+
+
+
+  if(isset($title)) {
+    $verify = getimagesize($_FILES['image']['tmp_name']);
+
+if($verify == false) {
+  echo "the file not an image";
+  die();
+}
+  }
+
+if(file_exists($image_file)){
+  echo " file already exist";
+  die();
+}
+  
+if($_FILES['image']['size']>1000000) {
+echo "The file is too big"; 
+die; 
+}
+
+
+if($file_type != "png" && $file_type != "gif" && $file_type != "jpg" && $file_type != "jpeg") {
+  echo "you can only upload ..";
+  die();
+}
+
+if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
+
+  $sql = "INSERT INTO Entries (Title, Entry, EntryDate, CategoryId, UsersId, Image) VALUES(:title_IN, :entry_IN, :entryDate_IN, :categoryId_IN, :usersId_IN, :image_IN)";
   $stm = $pdo->prepare($sql);
   $stm->bindParam(':title_IN', $title);
   $stm->bindParam(':entry_IN', $entry_text);
   $stm->bindParam(':entryDate_IN', $date);
   $stm->bindParam(':categoryId_IN', $categories);
   $stm->bindParam(':usersId_IN', $userId);
+  $stm->bindParam(':image_IN', $image_file);
 
   if($stm->execute()) {
     header("Location: entries.php?entries=success");
@@ -77,7 +111,7 @@ if(isset($_POST['create_entry'])){
   }
   
 }
-
+}
 ?>
     </span>
   </div>
@@ -86,7 +120,7 @@ if(isset($_POST['create_entry'])){
 <div class="login-page">
   <div class="form">
   <h3>Skapa inlägg</h3>
-    <form class="login-form" action="" method="POST">
+    <form class="login-form" action="" method="POST" enctype="multipart/form-data">
       <input type="text" placeholder="title" name="title"/>
       <input type="date" name="date"/>
       <select name="categories" id="select">
@@ -94,7 +128,7 @@ if(isset($_POST['create_entry'])){
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
       </select>
-      <input type="file" name="" id="">
+      <input type="file" name="image">
       <textarea name="entry_text" id="textarea" cols="30" rows="10" placeholder="skriv ditt inlägg här..."></textarea>
       <input id="button" type="submit" value="Skapa inlägg" name="create_entry">
     </form>
@@ -127,3 +161,5 @@ else {
 </div>
     </body>
 </html>
+
+
