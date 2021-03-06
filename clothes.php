@@ -48,7 +48,7 @@ session_start();
 <?php
 if(isset($_SESSION['username']) && isset($_SESSION['password']) ) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
-echo '<a href="logout.php">Sign Out</a>';
+echo '<a href="logout.php">Logga ut</a>';
 } else {
   header("location:login.php");
 }
@@ -59,7 +59,7 @@ echo '<a href="logout.php">Sign Out</a>';
 </nav>        
 <div class="site">
 	<div class="hero">
-		<h1 class="h1hero">Millhouse's Blog - Kläder</h1>
+		<h1 class="h1hero">Millhouses Blog - Kläder</h1>
 	</div>
   <?php
 include 'includes/database_connection.php';
