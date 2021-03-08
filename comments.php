@@ -57,19 +57,18 @@ echo '<a href="logout.php">Logga ut</a>';
 <?php
 include 'includes/database_connection.php';
 $entryId = $_GET['id'];
-$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries WHERE Entries.Id = $entryId");
-    /* while($row = $stm->fetch()){​​​​​
-    echo $row['Title'] . " " . $row['Entry'] . " " . $row['EntryDate'] . " " $row['CategoryId'] "<br />";
-    /* "<a href='entries.php?id=".$row['Id']."'>DELETE</a>" . " " . 
-    "<a href='entries.php?id=".$row['Id']."'>MODIFY</a>" . " " . "<br>"; 
-    }​​​​​ */
+$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Entries.Id, Image, CategoryName FROM Entries JOIN Categories ON Entries.CategoryId = Categories.Id WHERE Entries.Id = $entryId");
+
+    /*SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries WHERE Entries.Id = $entryId 
+    */
 
 while($row = $stm->fetch()):
     ?>
   <section class="section">
 		<h2><?=$row['Title']?></h2>
     <p> <?=$row['EntryDate']?></p>
-    <p> <?=$row['CategoryId']?></p>
+    <p> <?=$row['CategoryName']?></p>
+    <img src="<?=$row['Image']?>" alt="EntriesImage">
 		<p> <?=$row['Entry']?></p>
 <?php
 if(isset($_SESSION['role'])){
