@@ -59,9 +59,6 @@ include 'includes/database_connection.php';
 $entryId = $_GET['id'];
 $stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Entries.Id, Image, CategoryName FROM Entries JOIN Categories ON Entries.CategoryId = Categories.Id WHERE Entries.Id = $entryId");
 
-    /*SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries WHERE Entries.Id = $entryId 
-    */
-
 while($row = $stm->fetch()):
     ?>
   <section class="section">

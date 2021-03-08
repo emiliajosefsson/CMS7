@@ -57,24 +57,18 @@ Vi vill höra era tips - vilka solglasögon vill ni se hos oss?
 Överrös oss med tips. Vår läsare som kommer med det bästa 
 tipset får 15% rabatt på våra solglasögon som vi börjar sälja 
 på hemsidan den 1 april.", "2021-03-08", "2", "images/sunglasses-unsplash.jpg", "1"),
-("TICK... TOCK...", "
-Nej vi pratar inte om appen utan om armbandsuret. Det är en
+("TICK... TOCK...", "Nej vi pratar inte om appen utan om armbandsuret. Det är en
 accesoar som ger dig möjlighet att göra ett statement. 
-
 Två snabba frågor till er:
 1. Silver eller guld? 
 2. Vad är viktigast - märket eller designen? 
-
 Vi på Millhouse jobbar hårt för att ständigt utöka vårt 
 sortiment så du ska kunna hitta en klocka som passar just 
 dig och din stil.", "2021-03-01", "2", "images/watches-unsplash.jpg", "3"),
 ("INREDNINGSTRENDER 2021", "I dessa pandemitider har hemmet fått en helt ny betydelse och
 vi spenderar mer av våra vakna timmar i hemmets mysiga vrår.
-
 Några utav årets inredningstrender för att inspirera er:
-
 Beiget & Naturfärgat, Havets djur- och växtliv, Ljust trä, Blått som accentfärg & Ett statement piece 
-
 Kanske är vårt statement piece som snart finns att köpa hos 
 oss något för dig och ditt trendiga hem?", "2021-02-22", "3", "images/lamp-unsplash.jpg", "2");
 

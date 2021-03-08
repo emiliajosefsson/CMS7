@@ -66,10 +66,6 @@ include 'includes/database_connection.php';
 
 $stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Entries.Id, Image, CategoryName FROM Entries JOIN Categories ON Entries.CategoryId = Categories.Id ORDER BY EntryDate DESC");
 
-   
-/*SELECT Title, Entry, EntryDate, CategoryId, Id, Image FROM Entries ORDER BY EntryDate DESC 
-*/
-
 while($row = $stm->fetch()):
     ?>
   <section class="section">

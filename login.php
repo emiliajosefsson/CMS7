@@ -12,7 +12,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--Ska millhouse vara klickbart? -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand company-name" href="login.php">Millhouse</a>
 </nav>
@@ -38,9 +37,6 @@ $stm->bindParam(":username_IN", $username);
 $stm->bindParam(":password_IN", $userPassword); 
 $stm->execute(); 
 
-
-/*möjligen att vi ska lägga till här i if statement role för att skapa olika sessions beroende på admin eller 
-user??*/
 $return = $stm->fetch();
 
   if($return['Role'] == "Admin"){

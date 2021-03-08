@@ -1,8 +1,6 @@
 <?php
 session_start();
 include 'includes/database_connection.php';
-
-//if(isset($_POST['create_comment'])){
   
   $comment_date = $_POST['comment_date'];
   $comment_text = $_POST['comment_text'];
@@ -23,11 +21,8 @@ include 'includes/database_connection.php';
   $stmt->bindParam(':usersId_IN', $userId);
 
   if($stmt->execute()) {
-    //header("Location: handleComments.php?comment=success");
     header("Location: comments.php?id=$entryId");
   } else {
-    //header("Location: handleComments.php?comment=error");
     header("Location: comments.php?id=$entryId&&comment=error");
- // }
 };
 ?>
