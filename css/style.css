@@ -163,9 +163,10 @@ select option:first-child {
   display:none;
 }
 
-a {
+/*a {
   text-decoration: none;
-}
+}*/
+
   
 footer {
 	text-align: center;
