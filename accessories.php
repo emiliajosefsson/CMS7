@@ -59,7 +59,7 @@ echo '<a href="logout.php">Logga ut</a>';
 </nav>        
 <div class="site">
 	<div class="hero">
-		<h1 class="h1hero">Millhouses Blog - Accessoarer</h1>
+		<h1 class="h1hero">Millhouses Blogg - Accessoarer</h1>
 	</div>
   <?php
 include 'includes/database_connection.php';

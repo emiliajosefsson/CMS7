@@ -14,7 +14,7 @@
 <body>
 <!--Ska millhouse vara klickbart? -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand company-name" href="#">Millhouse</a>
+  <a class="navbar-brand company-name" href="login.php">Millhouse</a>
 </nav>
 
 <?php
