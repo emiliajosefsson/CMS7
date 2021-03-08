@@ -69,7 +69,6 @@ if(isset($_POST['change_entry'])){
     $title_change = $_POST['title'];
     $categories_change = $_POST['categories'];
     $entry_text_change = $_POST['entry_text'];
-  
 
 
 if(empty($title_change) || empty($entry_text_change)) {
@@ -77,13 +76,42 @@ if(empty($title_change) || empty($entry_text_change)) {
         die();
     }
 
+
+    $upload_folder = "images/"; 
+    $image_file = $upload_folder . basename($_FILES['image']['name']);
+    $file_type = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
     
-        
-        $sql = "UPDATE Entries SET Entry = :entry_IN, Title = :title_IN, CategoryId = :categoryId_IN WHERE Entries.Id = :id_IN";
+    
+  if(isset($title)) {
+    $verify = getimagesize($_FILES['image']['tmp_name']);
+
+if($verify == false) {
+  echo "the file not an image";
+  die();
+}
+  }
+  
+   
+if($_FILES['image']['size']>1000000) {
+  echo "The file is too big"; 
+  die; 
+  }
+  
+  
+  if($file_type != "png" && $file_type != "gif" && $file_type != "jpg" && $file_type != "jpeg") {
+    echo "you can only upload ..";
+    die();
+  }
+
+  
+if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
+
+        $sql = "UPDATE Entries SET Entry = :entry_IN, Title = :title_IN, CategoryId = :categoryId_IN, Image = :image_IN WHERE Entries.Id = :id_IN";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":entry_IN", $entry_text_change);
         $stmt->bindParam(":title_IN", $title_change);
         $stmt->bindParam(":categoryId_IN", $categories_change);
+        $stmt->bindParam(':image_IN', $image_file);
         $stmt->bindParam(":id_IN", $_POST['id']);
 
   if($stmt->execute()) {
@@ -92,6 +120,7 @@ if(empty($title_change) || empty($entry_text_change)) {
     header("Location: modify.php?modify=error");
   }
   
+}
 }
 
 ?>
@@ -102,15 +131,15 @@ if(empty($title_change) || empty($entry_text_change)) {
 <div class="login-page">
   <div class="form">
   <h3>Ändra inlägg</h3>
-    <form class="login-form" action="" method="POST">
+    <form class="login-form" action="" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?=$_GET['id']?>">
-      <input type="text" name="title" value=<?=$entryData['Title']?>>
+      <input type="text" name="title" value="<?=$entryData['Title']?>">
       <select name="categories" id="select">
       <option value="1">Kläder</option>
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
       </select>
-      <input type="file" name="" id="">
+      <input type="file" name="image">
       <textarea name="entry_text" id="textarea" cols="30" rows="10"><?=$entryData['Entry']?></textarea>
       <input id="button" type="submit" value="Ändra inlägg" name="change_entry">
     </form>

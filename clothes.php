@@ -65,20 +65,15 @@ echo '<a href="logout.php">Logga ut</a>';
 include 'includes/database_connection.php';
 
 
-$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries ORDER BY EntryDate DESC");
-    /* while($row = $stm->fetch()){​​​​​
-    echo $row['Title'] . " " . $row['Entry'] . " " . $row['EntryDate'] . " " $row['CategoryId'] "<br />";
-    /* "<a href='entries.php?id=".$row['Id']."'>DELETE</a>" . " " . 
-    "<a href='entries.php?id=".$row['Id']."'>MODIFY</a>" . " " . "<br>"; 
-    }​​​​​ */
+$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id, Image FROM Entries ORDER BY EntryDate DESC");
 
 while($row = $stm->fetch()):
     if($row['CategoryId'] == 1){
     ?>
   <section class="section">
-		<h2><?=$row['Title']?></h2>
-    <p> <?=$row['EntryDate']?></p>
-    <p> <?=$row['CategoryId']?></p>
+  <h2><?=$row['Title']?></h2>
+  <p> <?=$row['EntryDate']?></p>
+  <img src="<?=$row['Image']?>" alt="EntriesImage"><br></br>
 		<p> <?=$row['Entry']?></p>
     <?php
 if(isset($_SESSION['role'])){
