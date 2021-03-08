@@ -155,7 +155,6 @@ else {
     die();
   }
     elseif($modify == "success"){
-    /*echo "<p class='success_form'> Du har skapat ett konto</p>";*/
     header("location:index.php");
     die();
   } elseif($modify == "error"){

@@ -21,9 +21,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-     <!-- <li class="nav-item active">
-        <a class="nav-link" href="entries.php">? <span class="sr-only">(current)</span></a>
-      </li>-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Kategorier
@@ -50,7 +47,6 @@ if(isset($_POST['create_entry'])){
   
   include 'includes/database_connection.php';
 
-  //$image = $_FILES['image'];
   $title = $_POST['title'];
   $date = $_POST['date'];
   $categories = $_POST['categories'];
@@ -65,8 +61,6 @@ if(isset($_POST['create_entry'])){
 $upload_folder = "images/"; 
 $image_file = $upload_folder . basename($_FILES['image']['name']);
 $file_type = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
-
-
 
   if(isset($title)) {
     $verify = getimagesize($_FILES['image']['tmp_name']);
@@ -86,7 +80,6 @@ if($_FILES['image']['size']>1000000) {
 echo "The file is too big"; 
 die; 
 }
-
 
 if($file_type != "png" && $file_type != "gif" && $file_type != "jpg" && $file_type != "jpeg") {
   echo "you can only upload ..";
@@ -124,6 +117,7 @@ if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
       <input type="text" placeholder="title" name="title"/>
       <input type="date" name="date"/>
       <select name="categories" id="select">
+      <option value="0">Kategorier:</option>
       <option value="1">Kläder</option>
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
@@ -144,7 +138,6 @@ else {
     die();
   }
     elseif($entries == "success"){
-    /*echo "<p class='success_form'> Du har skapat ett konto</p>";*/
     header("location:index.php");
     die();
   } elseif($entries == "error"){
@@ -161,5 +154,3 @@ else {
 </div>
     </body>
 </html>
-
-
