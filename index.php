@@ -83,7 +83,7 @@ if(isset($_SESSION['role'])){
    echo "<a href='delete.php?id=".$row['Id']."'>Ta bort</a></br>";
    echo "<a href='modify.php?id=".$row['Id']."'>Ändra</a></br>";
 }
-echo "<a href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
+echo "<a class='entry_button' href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
 ?>
 	</section>
   <?php  endwhile;
@@ -95,3 +95,5 @@ echo "<a href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
 </div>
 </body>
 </html>
+
+
