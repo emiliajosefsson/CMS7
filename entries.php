@@ -120,7 +120,7 @@ if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
 <div class="login-page">
   <div class="form">
   <h3>Skapa inlägg</h3>
-    <form class="login-form" action="" method="POST" enctype="multipart/form-data">
+    <form class="login-form" action="entries.php" method="POST" enctype="multipart/form-data">
       <input type="text" placeholder="title" name="title"/>
       <input type="date" name="date"/>
       <select name="categories" id="select">

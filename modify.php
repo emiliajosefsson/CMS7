@@ -98,6 +98,7 @@ if(empty($title_change) || empty($entry_text_change)) {
     </span>
   </div>
 </nav>
+<div class="hero">
 <div class="login-page">
   <div class="form">
   <h3>Ändra inlägg</h3>
@@ -139,10 +140,6 @@ else {
 
     </div>
     </div>
+    </div>
     </body>
 </html>
-
-
-
-
-

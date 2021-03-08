@@ -65,7 +65,7 @@ echo '<a href="logout.php">Logga ut</a>';
 include 'includes/database_connection.php';
 
 
-$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId FROM Entries ORDER BY EntryDate DESC");
+$stm = $pdo->query("SELECT Title, Entry, EntryDate, CategoryId, Id FROM Entries ORDER BY EntryDate DESC");
     
     /* "<a href='entries.php?id=".$row['Id']."'>DELETE</a>" . " " . 
     "<a href='entries.php?id=".$row['Id']."'>MODIFY</a>" . " " . "<br>"; 
@@ -79,6 +79,14 @@ while($row = $stm->fetch()):
     <p> <?=$row['EntryDate']?></p>
     <p> <?=$row['CategoryId']?></p>
 		<p> <?=$row['Entry']?></p>
+
+    <?php
+if(isset($_SESSION['role'])){
+   echo "<a href='delete.php?id=".$row['Id']."'>Ta bort</a></br>";
+   echo "<a href='modify.php?id=".$row['Id']."'>Ändra</a></br>";
+}
+echo "<a class='entry_button' href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
+?>
 	</section>
   <?php } endwhile;
 
