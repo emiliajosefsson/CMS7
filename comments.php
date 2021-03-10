@@ -82,7 +82,7 @@ if(isset($_SESSION['role'])){
   <div class="form">
   <h3>Skriv din kommentar</h3>
     <form class="login-form" action="handleComments.php?id=<?=$row['Id']?>" method="POST">
-      <input type="date" name="comment_date"/>
+      <input type="hidden" name="comment_date" value="<?php echo date("Y-m-d");?>"/>
       <textarea name="comment_text" id="textarea" cols="30" rows="10" placeholder="skriv din kommentar här..."></textarea>
       <input id="button" type="submit" value="Skicka kommentar" name="create_comment">
     </form>
@@ -125,7 +125,7 @@ while($row = $stmt->fetch()):
             <p><?=$row['Comment']?></p>
   
   <?php if(isset($_SESSION['role'])){
-   echo "<a href='deleteComments.php?commentid=".$row['Id']."&&id=$entryId' class='r-link link text-underlined'>Ta bort</a></br>";
+   echo "<a href='deleteComments.php?commentid=".$row['Id']."&&id=$entryId' class='r-link link text-underlined'>Ta bort</a></br></br>";
   };
 ?>
 <?php  endwhile;

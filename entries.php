@@ -53,37 +53,40 @@ if(isset($_POST['create_entry'])){
   $entry_text = $_POST['entry_text'];
   $userId = $_SESSION['Id'];
 
-  if(empty($title) || empty($date) || empty($categories) || empty($entry_text)){
-    header("Location: entries.php?entries=empty");
-    die();
-  }
 
 $upload_folder = "images/"; 
 $image_file = $upload_folder . basename($_FILES['image']['name']);
 $file_type = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
 
-  if(isset($title)) {
+  if(empty($title) || empty($date) || empty($categories) || empty($entry_text) || empty($file_type)){
+    header("Location: entries.php?entries=empty");
+    die();
+  }
+
+
+
+  
     $verify = getimagesize($_FILES['image']['tmp_name']);
 
 if($verify == false) {
-  echo "the file not an image";
-  die();
+  header("Location: entries.php?entries=notImage");
+    die();
 }
-  }
+  
 
 if(file_exists($image_file)){
-  echo " file already exist";
-  die();
+  header("Location: entries.php?entries=exist");
+    die();
 }
   
 if($_FILES['image']['size']>1000000) {
-echo "The file is too big"; 
-die; 
+  header("Location: entries.php?entries=big");
+  die();
 }
 
 if($file_type != "png" && $file_type != "gif" && $file_type != "jpg" && $file_type != "jpeg") {
-  echo "you can only upload ..";
-  die();
+  header("Location: entries.php?entries=incorrect");
+    die();
 }
 
 if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
@@ -115,10 +118,9 @@ if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
   <h3>Skapa inlägg</h3>
     <form class="login-form" action="entries.php" method="POST" enctype="multipart/form-data">
       <input type="text" placeholder="title" name="title"/>
-      <input type="date" name="date"/>
-      <label for="categories">Kategorier:</label>
+      <input type="date" name="date" value="<?php echo date("Y-m-d");?>"/>
       <select name="categories" id="select">
-      <option value="0">Kategorier:</option>
+      <option value="">Kategorier</option>
       <option value="1">Kläder</option>
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
@@ -145,6 +147,22 @@ else {
     echo "<p class='error_form'> Något gick fel</p>";
     die();
   }
+  elseif($entries == "notImage"){
+    echo "<p class='error_form'>Filen du laddade upp är inte en bild</p>";
+    die();
+  }
+  elseif($entries == "exist"){
+    echo "<p class='error_form'>Bilden du laddade upp finns redan</p>";
+    die();
+  }
+  elseif($entries == "big"){
+    echo "<p class='error_form'>Bilden du laddade upp är för stor</p>";
+    die();
+  }
+  elseif($entries == "incorrect"){
+    echo "<p class='error_form'>Du kan endast ladda upp följande filtyper: png, gif, jpeg, jpg</p>";
+    die();
+  }
 
 }
 
@@ -155,3 +173,5 @@ else {
 </div>
     </body>
 </html>
+
+

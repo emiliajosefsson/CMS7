@@ -62,6 +62,8 @@ echo '<a href="logout.php" class="r-link link text-underlined" id="logout-link">
   }
 
 $entryData = $stm->fetch();
+ $entryId = $_GET['id'];
+
 
 
 if(isset($_POST['change_entry'])){
@@ -70,37 +72,32 @@ if(isset($_POST['change_entry'])){
     $categories_change = $_POST['categories'];
     $entry_text_change = $_POST['entry_text'];
 
-
-if(empty($title_change) || empty($entry_text_change)) {
-        header("Location: modify.php?modify=empty");
-        die();
-    }
-
-
     $upload_folder = "images/"; 
     $image_file = $upload_folder . basename($_FILES['image']['name']);
     $file_type = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
-    
-    
-  if(isset($title)) {
-    $verify = getimagesize($_FILES['image']['tmp_name']);
 
-if($verify == false) {
-  echo "the file not an image";
-  die();
-}
-  }
+
+if(empty($title_change) ||  empty($entry_text_change) || empty($file_type)) {
+        header("Location: modify.php?id=$entryId&&modify=empty");
+        die();
+    }
+    
   
-   
-if($_FILES['image']['size']>1000000) {
-  echo "The file is too big"; 
-  die; 
+  $verify = getimagesize($_FILES['image']['tmp_name']);
+
+  if($verify == false) {
+    header("Location: modify.php?id=$entryId&&modify=notImage");
+      die();
   }
-  
+    
+  if($_FILES['image']['size']>1000000) {
+    header("Location: modify.php?id=$entryId&&modify=big");
+    die();
+  }
   
   if($file_type != "png" && $file_type != "gif" && $file_type != "jpg" && $file_type != "jpeg") {
-    echo "you can only upload ..";
-    die();
+    header("Location: modify.php?id=$entryId&&modify=incorrect");
+      die();
   }
 
   
@@ -135,6 +132,7 @@ if (move_uploaded_file($_FILES['image']['tmp_name'], $image_file)){
     <input type="hidden" name="id" value="<?=$_GET['id']?>">
       <input type="text" name="title" value="<?=$entryData['Title']?>">
       <select name="categories" id="select">
+      <option value="">Kategorier</option>
       <option value="1">Kläder</option>
       <option value="2">Accesoarer</option>
       <option value="3">Inredning</option>
@@ -159,6 +157,18 @@ else {
     die();
   } elseif($modify == "error"){
     echo "<p class='error_form'> Något gick fel</p>";
+    die();
+  }elseif($modify == "notImage"){
+    echo "<p class='error_form'>Filen du laddade upp är inte en bild</p>";
+    die();
+  }
+  
+  elseif($modify == "big"){
+    echo "<p class='error_form'>Bilden du laddade upp är för stor</p>";
+    die();
+  }
+  elseif($modify == "incorrect"){
+    echo "<p class='error_form'>Du kan endast ladda upp följande filtyper: png, gif, jpeg, jpg</p>";
     die();
   }
 
