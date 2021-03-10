@@ -48,7 +48,7 @@ session_start();
 <?php
 if(isset($_SESSION['username']) && isset($_SESSION['password']) ) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
-echo '<a href="logout.php">Logga ut</a>';
+echo '<a href="logout.php" class="r-link link text-underlined" id="logout-link">Logga ut</a>';
 } else {
   header("location:login.php");
 }
@@ -74,12 +74,13 @@ while($row = $stm->fetch()):
   <p> <?=$row['CategoryName']?></p>
   <img src="<?=$row['Image']?>" alt="EntriesImage"><br></br>
 		<p> <?=$row['Entry']?></p>
+  
 <?php
 if(isset($_SESSION['role'])){
-   echo "<a href='delete.php?id=".$row['Id']."'>Ta bort</a></br>";
-   echo "<a href='modify.php?id=".$row['Id']."'>Ändra</a></br>";
+   echo "<a href='delete.php?id=".$row['Id']."' class='r-link link text-underlined'>Ta bort</a></br>";
+   echo "<a href='modify.php?id=".$row['Id']."' class='r-link link text-underlined'>Ändra</a></br>";
 }
-echo "<a class='entry_button' href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
+echo "<a class='entry_button r-link link text-underlined' href='comments.php?id=".$row['Id']."'>Se inlägg och kommentera</a>";
 ?>
 	</section>
   <?php  endwhile;

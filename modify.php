@@ -46,7 +46,7 @@ session_start();
     <?php
 if(isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['role'])) {
 echo "<h5>Välkommen " . $_SESSION['username'] . "</h5>";
-echo '<a href="logout.php">Sign Out</a>';
+echo '<a href="logout.php" class="r-link link text-underlined" id="logout-link">Sign Out</a>';
 } else {
   header("location:index.php");
 }
