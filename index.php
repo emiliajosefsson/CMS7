@@ -92,5 +92,3 @@ echo "<a class='entry_button r-link link text-underlined' href='comments.php?id=
 </div>
 </body>
 </html>
-
-

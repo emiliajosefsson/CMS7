@@ -27,7 +27,6 @@
   font-size: 14px;
 }
 
-/*.form button*/
 #button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -42,7 +41,7 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-/*.form button:hover,.form button:active,.form button:focus */
+
 #button:hover, #button:active, #button:focus {
   background: #158ab1;
 }
@@ -121,7 +120,6 @@
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	/*background: #158ab1;*/
     background: #ADD8E6; /* fallback for old browsers */
     background: -webkit-linear-gradient(right, #ADD8E6, #68b2ca);
     background: -moz-linear-gradient(right, #ADD8E6, #68b2ca);
@@ -162,19 +160,10 @@
 select option:first-child {
   display:none;
 }
-
-/*a {
-  text-decoration: none;
-}*/
   
 footer {
 	text-align: center;
 }
-
-/*.entry_button {
-  
-}*/
-
 
 .r-link{
 	display: var(--rLinkDisplay, inline-flex) !important;
@@ -186,10 +175,6 @@ footer {
 }
 
 .text-underlined{
-    /*
-        1. I use pixels units because others units (em, rem, vw, vh, etc) can
-        lead to the mistake of displaying a circumcised line
-    */
 
     --uiTextUnderlinedLineHeight: var(--textUnderlinedLineHeight, 2px); /* 1 */
     --uiTextUnderlinedLineGap: var(--textUnderlinedLineGap, .5rem);
@@ -211,12 +196,6 @@ footer {
     bottom: var(--textUnderlinedLineBottom, 0) !important;
 		z-index: var(--textUnderlinedLineZindex, -1) !important;
 }
-
-/*
-=====
-CORE
-=====
-*/
 
 .link{
 	--textUnderlinedLineHeight: 100%;
@@ -245,10 +224,6 @@ CORE
 .link:hover::after{
 	transition-duration: .15s;
 }
-
-/*
-* These styles for text decoration. The demo will be work without it
-*/
 
 .link{
 	font-weight: 700;

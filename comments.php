@@ -74,10 +74,7 @@ if(isset($_SESSION['role'])){
 
 }
 ?>
-<!--	</section>-->
 
-
-  <!--<div class="hero">-->
 <div class="login-page">
   <div class="form">
   <h3>Skriv din kommentar</h3>
@@ -105,7 +102,6 @@ if(isset($_SESSION['role'])){
     </div>
     </div>
     </section>
-<!--</div>-->
 
   <?php  endwhile;
 
